@@ -502,9 +502,13 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+// optimizations for this code implemented, getElementsByClassName is faster than a query so it is changed  2. cached the items.length even though it only makes a small difference in speed, but every millisecond counts 3. took document.body.scrollTop out of the for loop and placed it in a variable that we can then call in the for loop
+
+  var items = document.getElementsByClassName('mover');
+  var cachedLength = items.length;
+  var top = document.body.scrollTop
+  for (var i = 0; i < cachedLength; i++) {
+    var phase = Math.sin((top / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
