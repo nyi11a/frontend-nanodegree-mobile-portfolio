@@ -497,8 +497,7 @@ function updatePositions() {
   // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza
   var phaseList = [];
   for (var i = 0; i < 5; i++) {
-  	var phaseValue = Math.sin((top / 1250) + i);
-    phaseList.push(phaseValue);
+    phaseList.push(Math.sin((top / 1250) + i));
   }
     for (var x = 0; x < cachedLength; x++) {
     	phase = phaseList[x % 5];
