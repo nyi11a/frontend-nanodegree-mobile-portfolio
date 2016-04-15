@@ -398,7 +398,7 @@ var pizzaElementGenerator = function(i) {
   return pizzaContainer;
 };
 
-// resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
+// resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves. Forced synchronous  layout avoided by turning queryselectall into variable randomPizzas, var newWidth added to switch case rather than inside function.
 var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
@@ -427,7 +427,7 @@ var resizePizzas = function(size) {
           newWidth = 25;
           break;
         case "2":
-          newWidth = 3333;
+          newWidth = 33;
           break;
         case "3":
           newWidth = 50;
@@ -493,10 +493,15 @@ function updatePositions() {
   var items = document.getElementsByClassName('mover');
   var cachedLength = items.length;
   var top = document.body.scrollTop
-  for (var i = 0; i < cachedLength; i++) {
-    var phase = Math.sin((top / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  var phaseList = [];
+  for (var i = 0; i <= 4; i++) {
+    var phaseValue = Math.sin((top / 1250) + (i % 5));
+	phaseList.push(phaseValue);
   }
+    for (var i = 0; i < cachedLength; i++) {
+    	phase = phaseValue[i];
+ 		items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+ 	}
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
