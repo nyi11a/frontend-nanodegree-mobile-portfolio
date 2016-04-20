@@ -435,7 +435,7 @@ var resizePizzas = function(size) {
 		default:
           console.log("bug in sizeSwitcher");
       }
-      var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+      var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
   // Iterates through pizza elements on the page and changes their widths
     for (var i = 0; i < randomPizzas.length; i++) {
@@ -490,18 +490,20 @@ function updatePositions() {
 
 // optimizations for this code implemented, getElementsByClassName is faster than a query so it is changed  2. cached the items.length even though it only makes a small difference in speed, but every millisecond counts 3. took document.body.scrollTop out of the for loop and placed it in a variable that we can then call in the for loop
 
-  var items = document.getElementsByClassName('mover');
+var items = document.getElementsByClassName('mover');
   var cachedLength = items.length;
   var top = document.body.scrollTop;
 
   // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza
-  var phaseList = [];
+ var phaseList = [];
   for (var i = 0; i < 5; i++) {
     phaseList.push(Math.sin((top / 1250) + i));
   }
+
     for (var x = 0; x < cachedLength; x++) {
     	phase = phaseList[x % 5];
- 		items[x].style.left = items[x].basicLeft + 100 * phase + 'px';
+    	var distanceMoved = items[x].basicLeft + 100 * phase + 'px';
+ 		items[x].style.transform = 'translateX(' + distanceMoved +')';
  	}
 
 
@@ -522,7 +524,9 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
+  var readyPizza = document.querySelector("#movingPizzas1");
+
+  for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
@@ -530,7 +534,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.width = "73.333px";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    readyPizza.appendChild(elem);
   }
   updatePositions();
 });
