@@ -485,6 +485,7 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
+  animating = false;
   frame++;
   window.performance.mark("mark_start_frame");
 
@@ -494,10 +495,10 @@ var items = document.getElementsByClassName('mover');
   var cachedLength = items.length;
   var top = document.body.scrollTop;
 
-  // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza
+  // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza, and using translate X instead of basicLeft
  var phaseList = [];
-  for (var i = 0; i < 5; i++) {
-    phaseList.push(Math.sin((top / 1250) + i));
+ 	for (var i = 0; i < 5; i++) {
+  		phaseList.push(Math.sin((top / 1250) + (i)));
   }
 
     for (var x = 0; x < cachedLength; x++) {
@@ -517,15 +518,22 @@ var items = document.getElementsByClassName('mover');
   }
 }
 
-// runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+// decouples scrolling from updating- taken from Udacity forum discussion: https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
+window.addEventListener('scroll', requestAnimationFrameScrolling);
+function requestAnimationFrameScrolling(){
+	if (!animating) {
+		requestAnimationFrame(updatePositions);
+	}
+
+	animating = true;
+}
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   var readyPizza = document.querySelector("#movingPizzas1");
-
+//optimization- reduced number of pizzas created at start
   for (var i = 0; i < 30; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
@@ -537,4 +545,5 @@ document.addEventListener('DOMContentLoaded', function() {
     readyPizza.appendChild(elem);
   }
   updatePositions();
+  animating = false;
 });
