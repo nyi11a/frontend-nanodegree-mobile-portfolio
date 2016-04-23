@@ -522,7 +522,7 @@ function updatePositions() {
     }
 
     for (var x = 0; x < cachedLength; x++) {
-        phase = phaseList[x % 5];
+        var phase = phaseList[x % 5];
         var distanceMoved = items[x].basicLeft + 100 * phase + 'px';
         items[x].style.transform = 'translateX(' + distanceMoved + ')';
     }
