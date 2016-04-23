@@ -1,3 +1,4 @@
+
 module.exports = function(grunt) {
 
   // Project configuration.
@@ -44,3 +45,4 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['uglify','cssmin', 'htmlmin']);
 
 };
+
