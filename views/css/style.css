@@ -28,8 +28,9 @@ form {
 #pizzaSize {
   font-weight: 800;
 }
-
+/** added will-change and transform:translateZ(0) to cut down on paint time; **/
 .mover {
+  will-change: transform;
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
