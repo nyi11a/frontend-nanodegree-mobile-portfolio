@@ -1,0 +1,30 @@
+{
+  "name": "frontend-nanodegree-mobile-portfolio",
+  "version": "1.0.0",
+  "description": "mobileportfoliogruntfile",
+  "main": "gruntfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-htmlmin": "^1.4.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-minify-html": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nyi11a/frontend-nanodegree-mobile-portfolio.git"
+  },
+  "keywords": [
+    "optimization"
+  ],
+  "author": "nyilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nyi11a/frontend-nanodegree-mobile-portfolio/issues"
+  },
+  "homepage": "https://github.com/nyi11a/frontend-nanodegree-mobile-portfolio#readme"
+}
