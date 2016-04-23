@@ -43,7 +43,12 @@ To optimize views/pizza.html, I  modified views/js/main.js until the frames per 
 
 To view the effects of my optimizations, open pizza.html in Chrome.
 Open Chrome Developer Tools
-Use timeline function to
+Use timeline function to see the fps score.
+
+Note: Grunt was used to minify pizza.html, views/js/main.js as well as the css files in the views folder.
+
+The grunfiles configuration was set up using: http://gruntjs.com/configuring-tasks. The Process html feature has also been added to enable use of the minified files for information on this, please see https://www.npmjs.com/package/grunt-processhtml#usage-examples
+
 
 optimizations:
 
