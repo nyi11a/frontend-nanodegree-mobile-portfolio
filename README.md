@@ -35,6 +35,7 @@ Optimizations made:
 2. added media attribute to print.css file tag in HTMl
 3. made Google Analytics Script asynchronous
 4. Optimized images
+5. placed css via style tag at bottom of HTML
 
 
 ####Part 2: Optimize Frames per Second in pizza.html
