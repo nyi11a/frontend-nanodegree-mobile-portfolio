@@ -1,6 +1,6 @@
 ## Website Performance Optimization portfolio project
 
-This project is part of the Udacity  Website Optimizaiton Project. The goal is to optimize this online portfolio for speed! In particular, optimizing the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
+This project is part of the Udacity  Website Optimization Project. The goal is to optimize this online portfolio for speed! In particular, optimizing the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
 To get started, check out the repository, inspect the code,
 
@@ -32,10 +32,11 @@ To view the effect of my optimizations:
 
 Optimizations made:
 1.Commented out Googlefonts
-2. added media attribute to print.css file tag in HTMl
-3. made Google Analytics Script asynchronous
-4. Optimized images
-5. placed css via style tag at bottom of HTML
+2. Mdded media attribute to print.css file tag in HTMl
+3. Made Google Analytics Script asynchronous
+4. Optimized images and manually resized pizzeria.jpg
+5. Placed css via style tag at bottom of HTML
+
 
 
 ####Part 2: Optimize Frames per Second in pizza.html
@@ -55,17 +56,19 @@ optimizations:
 
 function changePizzaSizes(size)
 1. Forced synchronous layout avoided by turning queryselectall into variable randomPizzas, var newWidth added to switch case rather than inside function.
-
 function updatePositions() {
 2. Items defined via GetElementsByClassName instead of querySelectAll
-2. Cached the items.length even though it only makes a small difference in speed, but every millisecond counts
-3. Took document.body.scrollTop out of the for loop and placed it in a variable that we can then call in the for loop
-4.Calculated repeating values for phase and pushing them into an empty array (phaseList), for loop then iterates through array instead of recalculating for each pizza,
-5. Used translateX instead of basicLeft
+3. Cached the items.length even though it only makes a small difference in speed, but every millisecond counts
+3. Placed naming of var pizzasDiv outside for loop
+4. Took document.body.scrollTop out of the for loop and placed it in a variable that we can then call in the for loop
+5.Calculated repeating values for phase and pushing them into an empty array (phaseList), for loop then iterates through array instead of recalculating for each pizza,
+6. Added widthMove variable and changed the for loop to accomodate it
+7. Used translateX instead of basicLeft
 
- 4. added eventlistener to window, as it decouples scrolling from updating- taken from Udacity forum discussion: https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
- 5. redudce number of pizzas created at start to 30 in document.addEventListener('DOMContentLoaded', function() {
- 5. Added 'translateZ(0)' and will-change: transform to CSS
+ 8. added eventlistener to window, as it decouples scrolling from updating- taken from Udacity forum discussion: https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
+ in DOMContentLoaded listener, getElementsbyID used instead of queryselector
+ 9. redudce number of pizzas created at start to 30 in document.addEventListener('DOMContentLoaded', function() {
+ 10. Added 'translateZ(0)' and will-change: transform to CSS
 
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).

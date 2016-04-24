@@ -474,9 +474,9 @@ var resizePizzas = function(size) {
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
-// This for-loop actually creates and appends all of the pizzas when the page loads
+// This for-loop actually creates and appends all of the pizzas when the page loads Optimization made var defined outside of for loop
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-    var pizzasDiv = document.getElementById("randomPizzas");
     pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -514,18 +514,20 @@ function updatePositions() {
     var items = document.getElementsByClassName('mover');
     var cachedLength = items.length;
     var top = document.body.scrollTop;
+    var widthMove =  (window.innerWidth / 2);
 
     // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza, and using translate X instead of basicLeft
     var phaseList = [];
     for (var i = 0; i < 5; i++) {
         phaseList.push(Math.sin((top / 1250) + (i)));
     }
-
-    for (var x = 0; x < cachedLength; x++) {
+       for (var x = 0; x < cachedLength; x++) {
         var phase = phaseList[x % 5];
-        var distanceMoved = items[x].basicLeft + 100 * phase + 'px';
+        var distanceMoved = items[x].style.left
+        distanceMoved = items[x].basicLeft + 100 * phase -(widthMove) + 'px';
         items[x].style.transform = 'translateX(' + distanceMoved + ')';
     }
+
 
 
     // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -553,7 +555,9 @@ function requestAnimationFrameScrolling() {
 document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
-    var readyPizza = document.querySelector("#movingPizzas1");
+    //optmizaiton getElementByID swapped in for queryselector
+    var readyPizza = document.getElementById("movingPizzas1");
+
     //optimization- reduced number of pizzas created at start
     for (var i = 0; i < 30; i++) {
         var elem = document.createElement('img');
