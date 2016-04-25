@@ -441,6 +441,7 @@ var resizePizzas = function(size) {
 
     changeSliderLabel(size);
 
+// optimization: var newWidth added to switch case rather than inside function.
     function changePizzaSizes(size) {
         switch (size) {
             case "1":
@@ -455,6 +456,7 @@ var resizePizzas = function(size) {
             default:
                 console.log("bug in sizeSwitcher");
         }
+        // Optimizations: forced synchronous layout avoided by turning queryselectall("randomPizzaContainer") into variable randomPizzas, querySelectorAll changed to getElementByClassName
         var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
 
         // Iterates through pizza elements on the page and changes their widths
@@ -553,16 +555,16 @@ function requestAnimationFrameScrolling() {
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-    //var cols = 8;
+    var cols = 8;
     var s = 256;
     var colNum = Math.ceil(window.innerWidth / s);
     var rowNum = Math.ceil(window.innerHeight / s);
     var NumPizzasOnScreen = colNum * rowNum;
-    var cols = colNum;
+    //var cols = colNum;
     //optmizaiton getElementByID swapped in for queryselector
     var readyPizza = document.getElementById("movingPizzas1");
 
-    //optimization- reduced number of pizzas created at start to be relative to the screen's height and width
+    //optimization- reduced number of pizzas created at start to be relative to the screen's height and width, cols maintained at 8 to avoid the value  becoming a multiple of 5 because all pizzas will move in an aligned fashion, breaking the original movement.
     for (var i = 0; i < NumPizzasOnScreen; i++) {
         var elem = document.createElement('img');
         elem.className = 'mover';

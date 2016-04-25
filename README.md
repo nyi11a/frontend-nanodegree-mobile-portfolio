@@ -55,7 +55,8 @@ The grunfiles configuration was set up using: http://gruntjs.com/configuring-tas
 optimizations:
 
 function changePizzaSizes(size)
-1. Forced synchronous layout avoided by turning queryselectall into variable randomPizzas, var newWidth added to switch case rather than inside function.
+1. Forced synchronous layout avoided by turning queryselectall("randomPizzaContainer") into variable randomPizzas 2. querySelectorAll changed to getElementByClassName
+2. Var newWidth added to switch case rather than inside function.
 
 resizePizzas function
 1. Placed naming of var pizzasDiv outside for loop
@@ -69,7 +70,7 @@ function updatePositions() {
 6. Used translateX instead of basicLeft
 7. Added eventlistener to window, as it decouples scrolling from updating- taken from Udacity forum discussion: https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
  in DOMContentLoaded listener, getElementsbyID used instead of queryselector
-8. Reduce number of pizzas created at start tbe relative to the screen's height and width addEventListener('DOMContentLoaded', function() {
+8. Reduce number of pizzas created at start tbe relative to the screen's height and width addEventListener('DOMContentLoaded', function(), cols maintained at 8 to avoid the value  becoming a multiple of 5 because all pizzas will move in an aligned fashion, breaking the original movement.
 9. Added 'translateZ(0)' and will-change: transform to CSS
 
 
