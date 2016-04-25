@@ -56,19 +56,21 @@ optimizations:
 
 function changePizzaSizes(size)
 1. Forced synchronous layout avoided by turning queryselectall into variable randomPizzas, var newWidth added to switch case rather than inside function.
-function updatePositions() {
-2. Items defined via GetElementsByClassName instead of querySelectAll
-3. Cached the items.length even though it only makes a small difference in speed, but every millisecond counts
-3. Placed naming of var pizzasDiv outside for loop
-4. Took document.body.scrollTop out of the for loop and placed it in a variable that we can then call in the for loop
-5.Calculated repeating values for phase and pushed them into an empty array (phaseList), for loop then iterates through array instead of recalculating for each pizza
-6. Added widthMove variable and changed the for loop to accomodate it
-7. Used translateX instead of basicLeft
 
- 8. added eventlistener to window, as it decouples scrolling from updating- taken from Udacity forum discussion: https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
+resizePizzas function
+1. Placed naming of var pizzasDiv outside for loop
+
+function updatePositions() {
+1. Items defined via GetElementsByClassName instead of querySelectAll
+2. Cached the items.length even though it only makes a small difference in speed, but every millisecond counts
+3. Took document.body.scrollTop out of the for loop and placed it in a variable that we can then call in the for loop
+4.Calculated repeating values for phase and pushed them into an empty array (phaseList), for loop then iterates through array instead of recalculating for each pizza
+5. Added widthMove variable and changed the for loop to accomodate it
+6. Used translateX instead of basicLeft
+7. Added eventlistener to window, as it decouples scrolling from updating- taken from Udacity forum discussion: https://discussions.udacity.com/t/still-below-60fps-when-scrolling-due-to-painting-even-though-i-did-all-the-optimization-please-help/36979
  in DOMContentLoaded listener, getElementsbyID used instead of queryselector
- 9. redudce number of pizzas created at start tbe relative to the screen's height and width addEventListener('DOMContentLoaded', function() {
- 10. Added 'translateZ(0)' and will-change: transform to CSS
+8. Reduce number of pizzas created at start tbe relative to the screen's height and width addEventListener('DOMContentLoaded', function() {
+9. Added 'translateZ(0)' and will-change: transform to CSS
 
 
 You might find the FPS Counter/HUD Display useful in Chrome developer tools described here: [Chrome Dev Tools tips-and-tricks](https://developer.chrome.com/devtools/docs/tips-and-tricks).
