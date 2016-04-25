@@ -516,7 +516,7 @@ function updatePositions() {
     var top = document.body.scrollTop;
     var widthMove =  (window.innerWidth / 2);
 
-    // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza, and using translate X instead of basicLeft
+    // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza, creating variable newWidth and adding it to for loop so that pizzas are sprea out across the screen and using translate X instead of basicLeft
     var phaseList = [];
     for (var i = 0; i < 5; i++) {
         phaseList.push(Math.sin((top / 1250) + (i)));
@@ -555,11 +555,15 @@ function requestAnimationFrameScrolling() {
 document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
+    var colNum = Math.ceil(window.innerWidth / s);
+    var rowNum = Math.ceil(window.innerHeight / s);
+    var NumPizzasOnScreen = colNum * rowNum;
+    cols = colNum;
     //optmizaiton getElementByID swapped in for queryselector
     var readyPizza = document.getElementById("movingPizzas1");
 
-    //optimization- reduced number of pizzas created at start
-    for (var i = 0; i < 30; i++) {
+    //optimization- reduced number of pizzas created at start to be relative to the screen's height and width
+    for (var i = 0; i < NumPizzasOnScreen; i++) {
         var elem = document.createElement('img');
         elem.className = 'mover';
         elem.src = "images/pizza.png";
@@ -567,7 +571,6 @@ document.addEventListener('DOMContentLoaded', function() {
         elem.style.width = "73.333px";
         elem.basicLeft = (i % cols) * s;
         elem.style.top = (Math.floor(i / cols) * s) + 'px';
-        //elem.style.transform = 'translateZ(0)';
         readyPizza.appendChild(elem);
     }
     updatePositions();
