@@ -514,17 +514,17 @@ function updatePositions() {
     var items = document.getElementsByClassName('mover');
     var cachedLength = items.length;
     var top = document.body.scrollTop;
-    var widthMove =  (window.innerWidth / 2);
+    var widthMove = (window.innerWidth / 2);
 
     // optimizations include calculating repeating values for phase and pushing them into an empty array, for loop then iterates through array instead of recalculating for each pizza, creating variable newWidth and adding it to for loop so that pizzas are sprea out across the screen and using translate X instead of basicLeft
     var phaseList = [];
     for (var i = 0; i < 5; i++) {
         phaseList.push(Math.sin((top / 1250) + (i)));
     }
-       for (var x = 0; x < cachedLength; x++) {
+    for (var x = 0; x < cachedLength; x++) {
         var phase = phaseList[x % 5];
-        var distanceMoved = items[x].style.left
-        distanceMoved = items[x].basicLeft + 100 * phase -(widthMove) + 'px';
+        var distanceMoved = items[x].style.left;
+        distanceMoved = items[x].basicLeft + 100 * phase - (widthMove) + 'px';
         items[x].style.transform = 'translateX(' + distanceMoved + ')';
     }
 
@@ -553,12 +553,12 @@ function requestAnimationFrameScrolling() {
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
-    var cols = 8;
+    //var cols = 8;
     var s = 256;
     var colNum = Math.ceil(window.innerWidth / s);
     var rowNum = Math.ceil(window.innerHeight / s);
     var NumPizzasOnScreen = colNum * rowNum;
-    cols = colNum;
+    var cols = colNum;
     //optmizaiton getElementByID swapped in for queryselector
     var readyPizza = document.getElementById("movingPizzas1");
 
